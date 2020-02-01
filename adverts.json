@@ -1,0 +1,22 @@
+{
+  "adverts": [
+    {
+      "name":"Bici",
+      "description":"Una bici",
+      "price": 3500,
+      "forSale": true,
+      "photo": "photo.jpg",
+      "tags": ["lifestyle"],
+      "owner":"Francisco"
+    },
+    {
+      "name":"Portatil",
+      "description":"Dell usada",
+      "price": 1500,
+      "forSale": true,
+      "photo": "photo.jpg",
+      "tags": ["lifestyle"],
+      "owner":"Carmen"
+    }
+  ]
+}

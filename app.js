@@ -13,26 +13,13 @@ const app = express();
 const swaggerJsDocs = require('swagger-jsdoc');
 const swaggerUI = require('swagger-ui-express');
 
+const config = require("./config");
+
 
 /***************
  SWAGGER CONFIG
  ***************/
-const swaggerOptions = {
-  swaggerDefinition: {
-    info: {
-      title: 'Wallaclone API',
-      description: 'Wallaclone API Information',
-      contact: {
-        name: 'github: eliasrosales88'
-      },
-      servers: ["http://localhost:3000"]
-    }
-  },
-  // apis: ['routes/*.js']
-  apis: ['app.js']
-};
-
-const swaggerDocs = swaggerJsDocs(swaggerOptions);
+const swaggerDocs = swaggerJsDocs(config.swaggerOptions);
 app.use("/api-docs", swaggerUI.serve, swaggerUI.setup(swaggerDocs));
 
 /**
