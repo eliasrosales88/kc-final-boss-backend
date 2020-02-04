@@ -1,4 +1,5 @@
 "use strict";
+const User = require("../models/User");
 const UserRepository = require("../repositories/userRepository");
 
 class UserManager {
@@ -12,19 +13,17 @@ class UserManager {
     }
   }
 
-  checkUniqueUserInDB(user, username, email, password) {
+  async checkUniqueUserInDB(user, username, email, password) {
     let response;
 
     if (user === null) {
-      console.log("NULL");
-
       const dataToSaveMongo = {
         success: true,
         message: "User registered",
         data: {
           username,
           email,
-          password
+          password: await User.hashPassword(password)
         }
       };
       response = dataToSaveMongo;

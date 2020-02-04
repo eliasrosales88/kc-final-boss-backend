@@ -1,10 +1,6 @@
 "use strict";
-const User = require("../../models/User");
-const UserRepository = require("../../repositories/userRepository");
 const UserManager = require("../../managers/userManager");
-const bcrypt = require("bcrypt");
-const jwt = require("jsonwebtoken");
-const { check, validationResult } = require("express-validator");
+const { validationResult } = require("express-validator");
 /**
  * Hay que recibir el formulario con el username, email, password
  * Verificar en la base de datos si el username o email no se repiten con otro usuario
@@ -15,12 +11,14 @@ const { check, validationResult } = require("express-validator");
  * Debe logear al usuario y enviar correo de confirmacion de email?
  */
 class RegisterApiController {
+  
   async add(req, res, next) {
-    const username = req.body.username;
-    const email = req.body.email;
-    const password = req.body.password;
-
     try {
+      // Request credentials
+      const username = req.body.username;
+      const email = req.body.email;
+      const password = req.body.password;
+      
       // Return if errors
       const errors = validationResult(req);
       if (!errors.isEmpty()) {
@@ -44,6 +42,8 @@ class RegisterApiController {
         UserManager.save(userResponse.data);
       }
 
+      delete userResponse.data.password;
+      
       res.json(userResponse);
 
     } catch (err) {

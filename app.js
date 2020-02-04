@@ -56,6 +56,7 @@ app.use("/", indexRouter);
  API CONTROLLERS
  ***************/
 const registerApiController = require("./controllers/apiv1/registerApiController");
+const loginApiController = require("./controllers/apiv1/loginApiController");
 
 /***************
  API ENDPOINTS
@@ -75,6 +76,11 @@ app.post(
   ],
   registerApiController.add
 );
+
+app.post("/apiv1/authenticate", loginApiController.loginJWT);
+
+
+
 
 
 
