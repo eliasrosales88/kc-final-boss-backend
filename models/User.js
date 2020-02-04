@@ -6,14 +6,16 @@ const bcrypt = require('bcrypt');
 
 // definimos un esquema
 const userSchema = mongoose.Schema({
+  username: { type: String, unique: true },
   email: { type: String, unique: true },
-  password: String,
+  password: String
 });
 
 
 userSchema.statics.hashPassword = function(plainPassword) {
   return bcrypt.hash(plainPassword, 10);
 }
+
 
 // userSchema.methods.sendEmail = function(from, subject, body) {
 //   // enviar el correo

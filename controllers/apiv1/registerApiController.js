@@ -1,0 +1,55 @@
+"use strict";
+const User = require("../../models/User");
+const UserRepository = require("../../repositories/userRepository");
+const UserManager = require("../../managers/userManager");
+const bcrypt = require("bcrypt");
+const jwt = require("jsonwebtoken");
+const { check, validationResult } = require("express-validator");
+/**
+ * Hay que recibir el formulario con el username, email, password
+ * Verificar en la base de datos si el username o email no se repiten con otro usuario
+ * No se repite, aceptar. Si no, indicar al usuario que cambie username y/o email.
+ * Revisar loginJWT para buscar usuario en DB, crear token hacer login
+ * Revisar jwtAuth para el checkeo de tokens
+ * Falta hacer ruta POST ("/register", registerApiController.add)
+ * Debe logear al usuario y enviar correo de confirmacion de email?
+ */
+class RegisterApiController {
+  async add(req, res, next) {
+    const username = req.body.username;
+    const email = req.body.email;
+    const password = req.body.password;
+
+    try {
+      // Return if errors
+      const errors = validationResult(req);
+      if (!errors.isEmpty()) {
+        return res.status(422).json({ errors: errors.array() });
+      }
+
+      // Find user by email or username
+      const user = await UserManager.findOne({
+        $or: [{ email: email }, { username: username }]
+      });
+
+      // Check if user doesn't exist
+      const userResponse = await UserManager.checkUniqueUserInDB(
+        user,
+        username,
+        email,
+        password
+      );
+
+      if (userResponse.success) {
+        UserManager.save(userResponse.data);
+      }
+
+      res.json(userResponse);
+
+    } catch (err) {
+      next(err);
+    }
+  }
+}
+
+module.exports = new RegisterApiController();

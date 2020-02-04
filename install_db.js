@@ -61,11 +61,13 @@ async function initUsers() {
   await User.deleteMany();
   await User.insertMany([
     {
+      username: 'admin',
       email: 'admin@example.com',
       password: await User.hashPassword('1234')
     },
     {
-      email: 'user@example.com',
+      username: 'eard',
+      email: 'eard@example.com',
       password: await User.hashPassword('1234')
     }
   ]);
