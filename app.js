@@ -8,9 +8,11 @@ const swaggerUI = require("swagger-ui-express");
 const { check } = require("express-validator");
 const connectDb = require("./lib/dbConnection");
 const config = require("./config");
-
+const cors = require("cors");
 const app = express();
 
+
+app.use(cors());
 // BORRAR
 const indexRouter = require("./routes/index");
 
@@ -74,7 +76,7 @@ app.post(
       .isLength({ min: 8 })
       .withMessage("Must be at least 8 characters long")
   ],
-  registerApiController.add
+  registerApiController.add, loginApiController.loginJWT
 );
 
 app.post("/apiv1/authenticate", loginApiController.loginJWT);
