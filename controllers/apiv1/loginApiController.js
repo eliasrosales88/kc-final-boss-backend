@@ -16,8 +16,16 @@ class LoginApiController {
         $or: [{ email: email }, { username: username }]
       });
 
+
+      if (!user) {
+        res.status(404);
+        res.json({ success: false, error: "User not found" });
+        return;
+      }
+
       // Not authenticate if user is not registered in database
-      if (!user || !(await bcrypt.compare(password, user.password))) {
+      if (!(await bcrypt.compare(password, user.password))) {
+        res.status(401);
         res.json({ success: false, error: "Not Authenticated" });
         return;
       }

@@ -11,30 +11,14 @@ const config = require("./config");
 const cors = require("cors");
 const app = express();
 
-
 app.use(cors());
-// BORRAR
-const indexRouter = require("./routes/index");
+
 
 /***************
  SWAGGER CONFIG
  ***************/
 const swaggerDocs = swaggerJsDocs(config.swaggerOptions);
 app.use("/api-docs", swaggerUI.serve, swaggerUI.setup(swaggerDocs));
-
-/**
- * @swagger
- * /customers:
- *  get:
- *    description: Get all users
- *    responses:
- *      '200':
- *        description: Success
- */
-app.get("/customers", (req, res) => {
-  console.log("request");
-  res.status(200).send("Customers");
-});
 
 /***************
  MONGODB CONNECTION
@@ -52,7 +36,6 @@ app.use(cookieParser());
 
 app.use(express.static(path.join(__dirname, "public")));
 
-app.use("/", indexRouter);
 
 /***************
  API CONTROLLERS
@@ -63,6 +46,71 @@ const loginApiController = require("./controllers/apiv1/loginApiController");
 /***************
  API ENDPOINTS
  ***************/
+/**
+ * @swagger
+ * /apiv1/register:
+ *  post:
+ *    tags: [register]
+ *    description: Register user
+ *    requestBody:
+ *         description: A JSON object containing registration information
+ *         required: true
+ *         content:
+ *            application/json:
+ *             schema:      # Request body contents
+ *               type: object
+ *               properties:
+ *                 username:
+ *                   type: string
+ *                 email:
+ *                   type: string
+ *                 password:
+ *                   type: string
+ *             example:
+ *               username: test111
+ *               email: test@test.com
+ *               password: e12345696 
+ *    responses:
+ *      '200':
+ *        description: OK
+ *        content:
+ *         application/json:
+ *          schema:      # Request body contents
+ *            type: object
+ *            properties:
+ *              success:
+ *                type: boolean
+ *              message :
+ *                type: string
+ *              data :
+ *                type: object
+ *      '400':
+ *        description: Bad request.
+ *      '401':
+ *        description: Unauthorized
+ *        content:
+ *         application/json:
+ *          schema:      # Request body contents
+ *            type: object
+ *            properties:
+ *              success: 
+ *                type: boolean
+ *              error:
+ *                type: string
+ *      '404':
+ *        description: User not found
+ *        content:
+ *         application/json:
+ *          schema:      # Request body contents
+ *            type: object
+ *            properties:
+ *              success:
+ *                type: boolean
+ *              error:
+ *                type: string
+ *      '5XX':
+ *        description: Unexpected error.
+ */
 app.post(
   "/apiv1/register",
   [
@@ -76,11 +124,72 @@ app.post(
       .isLength({ min: 8 })
       .withMessage("Must be at least 8 characters long")
   ],
-  registerApiController.add, loginApiController.loginJWT
+  registerApiController.add,
+  loginApiController.loginJWT
 );
 
+/**
+ * @swagger
+ * /apiv1/authenticate:
+ *  post:
+ *    summary: Login user
+ *    tags: [authenticate]
+ *    description: Login user
+ *    requestBody:
+ *      description: A JSON object containing user information
+ *      required: true
+ *      content:
+ *         application/json:
+ *          schema:      # Request body contents
+ *            type: object
+ *            properties:
+ *              username:
+ *                type: string
+ *              password:
+ *                type: string
+ *          example:
+ *            username: test111
+ *            password: e12345696 
+ *    responses:
+ *      '200':
+ *        description: OK
+ *        content:
+ *         application/json:
+ *          schema:      # Request body contents
+ *            type: object
+ *            properties:
+ *              success:
+ *                type: boolean
+ *              token :
+ *                type: string
+ *      '400':
+ *        description: Bad request.
+ *      '401':
+ *        description: Unauthorized
+ *        content:
+ *         application/json:
+ *          schema:      # Request body contents
+ *            type: object
+ *            properties:
+ *              success: 
+ *                type: boolean
+ *              error:
+ *                type: string
+ *      '404':
+ *        description: User not found
+ *        content:
+ *         application/json:
+ *          schema:      # Request body contents
+ *            type: object
+ *            properties:
+ *              success:
+ *                type: boolean
+ *              error:
+ *                type: string
+ *      '5XX':
+ *        description: Unexpected error.
+ */
 app.post("/apiv1/authenticate", loginApiController.loginJWT);
-
 
 
 
