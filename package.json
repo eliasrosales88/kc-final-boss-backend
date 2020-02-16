@@ -8,6 +8,7 @@
     "dev": "cross-env DEBUG=kc-final-boss-backend:* nodemon"
   },
   "dependencies": {
+    "amqplib": "^0.5.5",
     "async": "^3.1.1",
     "axios": "^0.19.2",
     "bcrypt": "^3.0.7",
@@ -16,6 +17,7 @@
     "cors": "^2.8.5",
     "cross-env": "^7.0.0",
     "debug": "~2.6.9",
+    "dotenv": "^8.2.0",
     "ejs": "~2.6.1",
     "express": "^4.16.4",
     "express-validator": "^6.4.0",
@@ -24,6 +26,7 @@
     "jsonwebtoken": "^8.5.1",
     "mongoose": "^5.8.10",
     "morgan": "~1.9.1",
+    "multer": "^1.4.2",
     "node-sass-middleware": "0.11.0",
     "nodemon": "^2.0.2",
     "swagger-jsdoc": "^3.5.0",

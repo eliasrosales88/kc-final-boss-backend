@@ -15,20 +15,24 @@ class UserManager {
 
   async checkUniqueUserInDB(user, username, email, password) {
     let response;
-
-    if (user === null) {
-      const dataToSaveMongo = {
-        success: true,
-        message: "User registered",
-        data: {
-          username,
-          email,
-          password: await User.hashPassword(password)
-        }
-      };
-      response = dataToSaveMongo;
-
-      return response;
+    try {
+      if (user === null) {
+        const dataToSaveMongo = {
+          success: true,
+          message: "User registered",
+          data: {
+            username,
+            email,
+            password: await User.hashPassword(password)
+          }
+        };
+        response = dataToSaveMongo;
+  
+        return response;
+      }
+      
+    } catch (error) {
+      throw new Error(error);
     }
 
     // Check if username or email exist in database

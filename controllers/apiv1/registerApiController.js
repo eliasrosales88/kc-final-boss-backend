@@ -12,7 +12,7 @@ const { validationResult } = require("express-validator");
  */
 class RegisterApiController {
   
-  async add(req, res, next) {
+  async create(req, res, next) {
     try {
       // Request credentials
       const username = req.body.username;

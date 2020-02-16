@@ -14,5 +14,8 @@ module.exports = {
       }
     },
     apis: ['app.js']
+  },
+  adverts: {
+    imagesURLBasePath: '/images/adverts/' 
   }
 };

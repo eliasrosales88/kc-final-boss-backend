@@ -9,8 +9,10 @@ const { check } = require("express-validator");
 const connectDb = require("./lib/dbConnection");
 const config = require("./config");
 const cors = require("cors");
+const multer = require("multer");
 const app = express();
 
+const upload = multer({ dest: 'uploads/' });
 app.use(cors());
 
 
@@ -42,6 +44,7 @@ app.use(express.static(path.join(__dirname, "public")));
  ***************/
 const registerApiController = require("./controllers/apiv1/registerApiController");
 const loginApiController = require("./controllers/apiv1/loginApiController");
+const advertApiController = require("./controllers/apiv1/advertApiController");
 
 /***************
  API ENDPOINTS
@@ -124,7 +127,7 @@ app.post(
       .isLength({ min: 8 })
       .withMessage("Must be at least 8 characters long")
   ],
-  registerApiController.add,
+  registerApiController.create,
   loginApiController.loginJWT
 );
 
@@ -190,6 +193,9 @@ app.post(
  *        description: Unexpected error.
  */
 app.post("/apiv1/authenticate", loginApiController.loginJWT);
+app.get("/apiv1/adverts", advertApiController.getList);
+app.post("/apiv1/advert", upload.single('photo'),  advertApiController.create);
+// app.post("/apiv1/advert", advertApiController.create);
 
 
 
