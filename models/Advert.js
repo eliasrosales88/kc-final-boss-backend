@@ -10,7 +10,9 @@ const advertSchema = mongoose.Schema({
   photo: { type: String },
   forSale: { type: Boolean, index: true },
   tags: { type: [String], index: true },
-  owner: { type: String, index: true }
+  owner: { type: String, index: true },
+  createdAt: {type: String},
+  updatedAt: {type: String}
 });
 
 /**

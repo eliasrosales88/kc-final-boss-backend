@@ -7,7 +7,9 @@
       "forSale": true,
       "photo": "photo.jpg",
       "tags": ["lifestyle"],
-      "owner":"Francisco"
+      "owner":"Francisco",
+      "createdAt":"2020-02-18T22:10:00.168Z",
+      "updatedAt":"2020-02-18T22:10:00.168Z" 
     },
     {
       "name":"Portatil",
@@ -16,7 +18,9 @@
       "forSale": true,
       "photo": "photo.jpg",
       "tags": ["lifestyle"],
-      "owner":"Carmen"
+      "owner":"Carmen",
+      "createdAt":"2020-02-18T22:09:50.764Z",
+      "updatedAt":"2020-02-18T22:09:50.764Z" 
     }
   ]
 }
