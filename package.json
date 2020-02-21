@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "dbstart": "node install_db.js",
-    "start": "node ./bin/www",
+    "start": "node ./bin/www && node ./queue/consumer.js",
     "dev": "cross-env DEBUG=kc-final-boss-backend:* nodemon"
   },
   "dependencies": {
@@ -23,6 +23,7 @@
     "express-validator": "^6.4.0",
     "http-errors": "^1.6.3",
     "i18n": "^0.8.5",
+    "jimp": "^0.9.3",
     "jsonwebtoken": "^8.5.1",
     "mongoose": "^5.8.10",
     "morgan": "~1.9.1",

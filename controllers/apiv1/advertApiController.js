@@ -8,13 +8,12 @@ const queueName = "setImages";
 
 class AdvertApiController {
   async getList(req, res, next) {
-    const start = parseInt(req.query.start) || 0;
+    const skip = parseInt(req.query.skip) || 0;
     const limit = parseInt(req.query.limit) || 1000; // nuestro api devuelve max 1000 registros
     const sort = req.query.sort || "_id";
     const includeTotal = req.query.includeTotal === "true";
     let filters = {};
     
-    console.log("REQ", req.query);
     filters = AdvertManager.getFilters(req, filters)
     console.log("Filters", filters);
     
@@ -22,7 +21,7 @@ class AdvertApiController {
     try {
       let adverts = await AdvertManager.find(
         filters,
-        start,
+        skip,
         limit,
         sort,
         includeTotal

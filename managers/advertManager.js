@@ -46,8 +46,9 @@ class AdvertManager {
   }
 
   getFilters(req, filters) {
-    if (typeof req.query.tag !== "undefined") {
-      filters.tags = req.query.tag;
+    if (typeof req.query.tags !== "undefined") {
+      filters.tags = req.query.tags;
+      filters.tags.$all = filters.tags;
     }
 
     if (typeof req.query.forSale !== "undefined") {
@@ -71,7 +72,7 @@ class AdvertManager {
     }
 
     if (typeof req.query.name !== "undefined") {
-      filters.name = new RegExp("^" + req.query.name, "i");
+      filters.name = new RegExp(req.query.name, "i");
     }
 
     return filters;

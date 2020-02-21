@@ -15,16 +15,19 @@ class AdvertRepository {
 
   async find(filters, startRow, numRows, sortField, includeTotal, cb) {
     try {
+      
       const query = Advert.find(filters);
-      query.sort(sortField);
+      query.sort([[sortField, -1]]);
       query.skip(startRow);
       query.limit(numRows);
-      //query.select('nombre venta');
-
+      // if (filters.name) {
+      //   query.select('name');
+      // };
+      
       const result = {};
 
       if (includeTotal) {
-        result.total = await Advert.count();
+        result.total = await Advert.countDocuments(filters);
       }
       result.rows = await query.exec();
 
