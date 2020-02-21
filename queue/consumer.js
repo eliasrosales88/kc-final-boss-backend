@@ -40,7 +40,7 @@ async function main() {
       const image = await jimp.read(imgPath);
   
       // Resize the image to width and height to 100.
-      await image.resize(100, 100);
+      await image.resize(240, 240);
       
       // Save and overwrite the image
       await image.writeAsync(imgPath);
