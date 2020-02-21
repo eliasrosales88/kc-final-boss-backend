@@ -7,6 +7,18 @@ const publisher = require("../../queue/publisher");
 const queueName = "setImages";
 
 class AdvertApiController {
+
+  async findOne(req, res, next) {
+    const _id = req.body._id;
+    try {
+      let advert = await AdvertManager.findOne({_id});
+      res.json({ok: true, result: advert})
+    } catch (error) {
+      throw new Error(error);
+    }
+    
+  }
+
   async getList(req, res, next) {
     const skip = parseInt(req.query.skip) || 0;
     const limit = parseInt(req.query.limit) || 1000; // nuestro api devuelve max 1000 registros

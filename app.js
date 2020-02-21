@@ -195,7 +195,7 @@ app.post(
 app.post("/apiv1/authenticate", loginApiController.loginJWT);
 app.get("/apiv1/adverts", advertApiController.getList);
 app.post("/apiv1/advert", upload.single('photo'),  advertApiController.create);
-// app.post("/apiv1/advert", advertApiController.create);
+app.get("/apiv1/advert", advertApiController.findOne);
 
 
 
