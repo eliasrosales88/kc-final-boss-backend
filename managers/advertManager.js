@@ -57,6 +57,12 @@ class AdvertManager {
   }
 
   getFilters(req, filters) {
+
+    if (typeof req.query.owner !== "undefined") {
+      filters.owner = req.query.owner;
+      filters.owner = filters.owner;
+    }
+
     if (typeof req.query.tags !== "undefined") {
       filters.tags = req.query.tags;
       filters.tags.$all = filters.tags;

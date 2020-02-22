@@ -26,7 +26,7 @@ class AdvertApiController {
     const sort = req.query.sort || "_id";
     const includeTotal = req.query.includeTotal === "true";
     let filters = {};
-    
+    console.log(req.query);
     filters = AdvertManager.getFilters(req, filters)
     console.log("Filters", filters);
     
