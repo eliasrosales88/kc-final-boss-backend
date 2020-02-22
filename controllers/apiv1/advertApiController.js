@@ -9,9 +9,10 @@ const queueName = "setImages";
 class AdvertApiController {
 
   async findOne(req, res, next) {
-    const _id = req.body._id;
+    const _id = req.query._id;
+    
     try {
-      let advert = await AdvertManager.findOne({_id});
+      let advert = await AdvertManager.findById(_id);
       res.json({ok: true, result: advert})
     } catch (error) {
       throw new Error(error);

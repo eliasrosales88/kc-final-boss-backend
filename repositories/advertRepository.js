@@ -3,7 +3,20 @@ const Advert = require("../models/Advert");
 
 
 class AdvertRepository {
+  async findById(id) {
+    console.log("QUERY", id);
+    
+    let advert;
+    try {
+      advert = await Advert.findById(id);
+      return advert;
+    } catch (error) {
+      throw new Error(error);
+    }
+  }
   async findOne(query) {
+    console.log("QUERY", query);
+    
     let advert;
     try {
       advert = await Advert.findOne(query);
@@ -17,7 +30,7 @@ class AdvertRepository {
     try {
       
       const query = Advert.find(filters);
-      query.sort([[sortField, -1]]);
+      query.sort([sortField]);
       query.skip(startRow);
       query.limit(numRows);
       // if (filters.name) {

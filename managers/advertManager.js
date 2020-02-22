@@ -5,6 +5,17 @@ const path = require("path");
 require("dotenv").config();
 
 class AdvertManager {
+  async findById(id) {
+    let advert;
+    try {
+      advert = await AdvertRepository.findById(id);
+      const route = configAdverts.imagesURLBasePath;
+      advert.photo = advert.photo ? process.env.API_BASE + route + advert.photo : null
+      return advert;
+    } catch (error) {
+      throw new Error(error);
+    }
+  }
   async findOne(query) {
     let advert;
     try {
