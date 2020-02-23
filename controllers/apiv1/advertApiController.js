@@ -8,7 +8,8 @@ const queueName = "setImages";
 
 class AdvertApiController {
 
-  async findOne(req, res, next) {
+
+  async findById(req, res, next) {
     const _id = req.query._id;
     
     try {

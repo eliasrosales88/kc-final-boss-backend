@@ -18,15 +18,15 @@ class LoginApiController {
 
 
       if (!user) {
-        res.status(404);
-        res.json({ success: false, error: "User not found" });
+        // res.status(404);
+        res.json({ success: false, message: "User not found" });
         return;
       }
 
       // Not authenticate if user is not registered in database
       if (!(await bcrypt.compare(password, user.password))) {
-        res.status(401);
-        res.json({ success: false, error: "Not Authenticated" });
+        // res.status(401);
+        res.json({ success: false, message: "Not Authenticated" });
         return;
       }
 

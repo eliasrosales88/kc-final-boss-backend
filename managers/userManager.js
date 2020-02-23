@@ -6,6 +6,7 @@ class UserManager {
   async findOne(query) {
     let user;
     try {
+      
       user = await UserRepository.findOne(query);
       return user;
     } catch (error) {

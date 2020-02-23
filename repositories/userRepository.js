@@ -5,6 +5,8 @@ class UserRepository {
   async findOne(query){
     let user;
     try {
+      console.log("QUERY USER", query);
+      
       user = await User.findOne(query);
       return user;
     } catch (error) {
