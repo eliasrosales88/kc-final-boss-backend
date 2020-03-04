@@ -39,6 +39,14 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, "public")));
 
 
+
+
+/***************
+ JWT AUTH
+ ***************/
+const jwtAuth = require("./lib/jwtAuth");
+
+
 /***************
  API CONTROLLERS
  ***************/
@@ -195,10 +203,14 @@ app.post(
  */
 app.post("/apiv1/authenticate", loginApiController.loginJWT);
 app.get("/apiv1/adverts", advertApiController.getList);
-app.post("/apiv1/advert", upload.single('photo'),  advertApiController.create);
 app.get("/apiv1/advert", advertApiController.findById);
 app.get("/apiv1/user", userApiController.findOne);
 app.get("/apiv1/userAdvert", advertApiController.getList);
+app.get("/apiv1/account", jwtAuth(), advertApiController.getList);
+app.get("/apiv1/account/advert", jwtAuth(), advertApiController.findById);
+app.post("/apiv1/account/advert", [jwtAuth(), upload.single('photo')],  advertApiController.create);
+app.patch("/apiv1/account/advert", [jwtAuth(), upload.single('photo')], advertApiController.update);
+app.delete("/apiv1/account/advert", jwtAuth(), advertApiController.delete);
 
 
 

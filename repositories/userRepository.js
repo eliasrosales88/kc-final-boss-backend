@@ -2,6 +2,8 @@
 const User = require('../models/User');
 class UserRepository {
 
+
+  
   async findOne(query){
     let user;
     try {

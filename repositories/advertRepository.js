@@ -3,6 +3,26 @@ const Advert = require("../models/Advert");
 
 
 class AdvertRepository {
+async findByIdAndRemove(id) {
+  let query;
+  try {
+    query = await Advert.findByIdAndRemove(id);
+    return query;
+  } catch (error) {
+    throw new Error(error)
+  }
+}
+
+  async findByIdAndUpdate(_id, body){
+    let advert;
+    try {
+      console.log("QUERY ADVERT", body);
+      advert = await Advert.findByIdAndUpdate(_id, body, {new: true});
+      return advert;
+    } catch (error) {
+      throw new Error(error);
+    }
+  }
   async findById(id) {
     console.log("QUERY", id);
     

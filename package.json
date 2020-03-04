@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "dbstart": "node install_db.js",
-    "start": "node ./bin/www && node ./queue/consumer.js",
+    "start": "node ./bin/www",
     "dev": "cross-env DEBUG=kc-final-boss-backend:* nodemon"
   },
   "dependencies": {

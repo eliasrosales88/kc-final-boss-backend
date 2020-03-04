@@ -5,6 +5,32 @@ const path = require("path");
 require("dotenv").config();
 
 class AdvertManager {
+
+  async findByIdAndRemove(id){
+    let query;
+    try {
+      query = await AdvertRepository.findByIdAndRemove(id);
+      return query;
+    } catch (error) {
+      throw new Error(error);
+    }
+  }
+  async findByIdAndUpdate(body) {
+    console.log("body",body );
+    let advert;
+    try {
+      advert = await AdvertRepository.findByIdAndUpdate(body._id, body);
+      const route = configAdverts.imagesURLBasePath;
+      if (advert && advert.photo) {
+        advert.photo = advert.photo ? process.env.API_BASE + route + advert.photo : null
+        
+      }
+      return advert;
+    } catch (error) {
+      throw new Error(error);
+    }
+  }
+
   async findById(id) {
     let advert;
     try {

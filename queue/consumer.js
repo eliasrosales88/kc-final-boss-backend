@@ -37,8 +37,16 @@ async function main() {
       // hago el trabajo que corresponda a este worker(redimensionar una image, llamar a una api. etc...)
       
       // Read the image.
-      const image = await jimp.read(imgPath);
-  
+      let image;
+      try {
+        image = await jimp.read(imgPath);
+        
+      } catch (error) {
+        throw error;
+        
+      }
+      
+      
       // Resize the image to width and height to 100.
       await image.resize(240, 240);
       
