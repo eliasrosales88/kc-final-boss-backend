@@ -3,10 +3,15 @@ const Advert = require("../models/Advert");
 
 
 class AdvertRepository {
-async findByIdAndRemove(id) {
+async deleteMany(filters, cb) {
   let query;
+  console.log("filters", filters);
   try {
-    query = await Advert.findByIdAndRemove(id);
+    
+    query = await Advert.deleteMany(filters); 
+    console.log("QUERY", query);
+    
+    if (cb) return cb(null, query); // si me dan callback devuelvo los resultados por ahí
     return query;
   } catch (error) {
     throw new Error(error)
@@ -84,7 +89,6 @@ async findByIdAndRemove(id) {
 
   update() {}
   deleteOne() {}
-  deleteMany() {}
 }
 
 module.exports = new AdvertRepository();

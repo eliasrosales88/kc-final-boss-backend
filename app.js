@@ -212,6 +212,9 @@ app.post("/apiv1/account/advert", [jwtAuth(), upload.single('photo')],  advertAp
 app.patch("/apiv1/account/advert", [jwtAuth(), upload.single('photo')], advertApiController.update);
 app.delete("/apiv1/account/advert", jwtAuth(), advertApiController.delete);
 
+app.patch("/apiv1/account/user", jwtAuth(), userApiController.update);
+app.get("/apiv1/account/user", jwtAuth(), userApiController.findOne);
+app.delete("/apiv1/account/user", jwtAuth(), userApiController.delete);
 
 
 
@@ -231,7 +234,7 @@ app.use(function(err, req, res, next) {
 
   // render the error page
   res.status(err.status || 500);
-  res.render("error");
+  res.json({error: err});
 });
 
 module.exports = app;

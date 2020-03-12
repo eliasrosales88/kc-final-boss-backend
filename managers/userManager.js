@@ -1,8 +1,34 @@
 "use strict";
 const User = require("../models/User");
 const UserRepository = require("../repositories/userRepository");
+const AdvertRepository = require("../repositories/advertRepository");
 
 class UserManager {
+
+  async findOneAndUpdate(body) {
+    let query;
+    try {
+      query = await UserRepository.findOneAndUpdate(body);
+    } catch (error) {
+      throw new Error(error)
+    }
+  }
+
+  async deleteUserAndUserAdverts(username) {
+    let onDeleteAdvert;
+    let onDeleteUser;
+    try {
+      onDeleteAdvert = await AdvertRepository.deleteMany({owner: username});
+      if (onDeleteAdvert.ok === 1) {
+        onDeleteUser = await User.findOneAndDelete({username});
+        return onDeleteUser;
+      } else (onDeleteAdvert);
+    } catch (error) {
+      throw new Error(error)
+    }
+  }
+
+
   async findOne(query) {
     let user;
     try {
