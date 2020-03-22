@@ -40,10 +40,12 @@ class AdvertApiController {
           fs.createReadStream("./uploads/" + req.file.filename).pipe(
             fs
               .createWriteStream(
-                "./public/images/adverts/" +
+                path.join(__dirname,
+                  "./public/images/adverts/" +
                   req.file.filename +
                   "_" +
                   req.file.originalname
+                )
               )
               .on("finish", () => {
                 resolve();
@@ -146,7 +148,8 @@ class AdvertApiController {
           fs.createReadStream("./uploads/" + req.file.filename).pipe(
             fs
               .createWriteStream(
-                "./public/images/adverts/" +
+                 path.join(__dirname, 
+                  "/../../public/images/adverts/") +
                   req.file.filename +
                   "_" +
                   req.file.originalname
