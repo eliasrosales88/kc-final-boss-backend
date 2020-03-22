@@ -145,17 +145,24 @@ class AdvertApiController {
         );
         //Paste image in public path
         const writeFilePromise = new Promise((resolve, reject) => {
-          fs.createReadStream(path.join(
+          const imageTmp = path.join(
             __dirname,
-            "/../../uploads/" + req.file.filename)).pipe(
+            "/../../uploads/" + req.file.filename)
+
+            console.log("imageTmp 1", imageTmp);
+            
+          const imagePath = path.join(
+            __dirname,
+            "/../../public/images/adverts/" +
+              req.file.filename +
+              "_" +
+              req.file.originalname)
+            
+              console.log("imagePath 1", imagePath)
+
+          fs.createReadStream(imageTmp).pipe(
             fs
-              .createWriteStream(
-                 path.join(__dirname, 
-                  "/../../public/images/adverts/") +
-                  req.file.filename +
-                  "_" +
-                  req.file.originalname
-              )
+              .createWriteStream(imagePath)
               .on("finish", () => {
                 resolve();
               })
@@ -174,20 +181,23 @@ class AdvertApiController {
         //Deleting temporal file location
         const imageTmp = path.join(
           __dirname,
-          "../../uploads/" + req.file.filename
+          "/../../uploads/" + req.file.filename
         );
+        console.log("imageTmp 2", imageTmp);
+        
         fs.unlinkSync(imageTmp);
         console.log(req.file.filename + " was deleted");
 
         // Setting img public path
         const imagePath = path.join(
           __dirname,
-          "../../public/images/adverts/" +
+          "/../../public/images/adverts/" +
             req.file.filename +
             "_" +
             req.file.originalname
         );
 
+        console.log("imagePath 2", imagePath);
         body.photo = req.file.filename + "_" + req.file.originalname;
 
         // Defining  advert to save in DB
