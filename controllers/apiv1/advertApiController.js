@@ -167,6 +167,10 @@ class AdvertApiController {
                 console.log("Resolving");
                 resolve();
               })
+              .on("error", (error)=> {
+                console.log("Error on createWriteStream PROMISE", error);
+                
+              })
           );
         });
         
