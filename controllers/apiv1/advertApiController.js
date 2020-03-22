@@ -161,8 +161,16 @@ class AdvertApiController {
               })
           );
         });
-
-        await writeFilePromise;
+        
+        try {
+          console.log("BEFORE writeFilePromise");
+          await writeFilePromise;
+          console.log("AFTER writeFilePromise");
+          
+        } catch (error) {
+          console.log("Error creating temporary image file", error);
+          throw error;
+        }
         //Deleting temporal file location
         const imageTmp = path.join(
           __dirname,
