@@ -162,7 +162,7 @@ class AdvertApiController {
 
           fs.createReadStream(imageTmp).pipe(
             fs
-              .createWriteStream(imagePath)
+              .createWriteStream(imagePath, {flags: "w+"})
               .on("finish", () => {
                 console.log("Resolving");
                 resolve();
