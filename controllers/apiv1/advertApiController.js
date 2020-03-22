@@ -147,7 +147,7 @@ class AdvertApiController {
         const writeFilePromise = new Promise((resolve, reject) => {
           fs.createReadStream(path.join(
             __dirname,
-            "../../uploads/" + req.file.filename)).pipe(
+            "/../../uploads/" + req.file.filename)).pipe(
             fs
               .createWriteStream(
                  path.join(__dirname, 
