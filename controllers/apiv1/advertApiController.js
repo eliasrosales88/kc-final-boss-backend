@@ -173,7 +173,7 @@ class AdvertApiController {
               })
           )
           .on("error", (error)=> {
-            console.log("Error on createWriteStream PROMISE", error);
+            console.log("Error on createReadStream PROMISE", error);
             
           })
         });
