@@ -1,10 +1,11 @@
 #!/usr/bin/env node
+const path = require("path");
 
 /**
  * Module dependencies.
  */
-// Load 
-require('dotenv').config();
+// Load
+require('dotenv').config({path: path.join(__dirname, "/../.env")});
 
 var app = require('../app');
 var debug = require('debug')('kc-final-boss-backend:server');
