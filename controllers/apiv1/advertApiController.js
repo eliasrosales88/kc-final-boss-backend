@@ -145,7 +145,9 @@ class AdvertApiController {
         );
         //Paste image in public path
         const writeFilePromise = new Promise((resolve, reject) => {
-          fs.createReadStream("./uploads/" + req.file.filename).pipe(
+          fs.createReadStream(path.join(
+            __dirname,
+            "../../uploads/" + req.file.filename)).pipe(
             fs
               .createWriteStream(
                  path.join(__dirname, 
@@ -200,7 +202,7 @@ class AdvertApiController {
         publisher
           .publishIMGPath(queueName, connectionPromise, imagePath)
           .catch(err => {
-            console.log("Hubo un error:", err);
+            console.log("Error publishing image to queue:", err);
           });
 
         // Send response
@@ -225,6 +227,7 @@ class AdvertApiController {
         res.json({ success: true, result: advertTosave });
       }
     } catch (error) {
+      console.log("Create advert error", error);
       res.json({ success: false });
     }
   }
