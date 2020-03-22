@@ -12,7 +12,7 @@ const cors = require("cors");
 const multer = require("multer");
 const app = express();
 
-const upload = multer({ dest: 'uploads/' });
+const upload = multer({ dest: path.join(__dirname, '/uploads/')});
 app.use(cors());
 
 
