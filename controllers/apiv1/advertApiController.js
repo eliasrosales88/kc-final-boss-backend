@@ -164,6 +164,7 @@ class AdvertApiController {
             fs
               .createWriteStream(imagePath)
               .on("finish", () => {
+                console.log("Resolving");
                 resolve();
               })
           );
