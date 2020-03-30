@@ -25,23 +25,24 @@ class AdvertApiController {
     try {
       const body = req.body;
       console.log("BODY UPDATE", body);
-      console.log("QUERY UPDATE", req.query);
-      console.log("PARAMS UPDATE", req.params);
 
       body.tags = body.tags.split(",");
 
       if (req.file) {
-        console.log("REQ FILE ------------------");
         console.log(
-          "START READING WRITING FILE!!-----------------------------------||"
+          "START READING WRITING FILE!!q-----------------------------------||"
         );
         //Paste image in public path
         const writeFilePromise = new Promise((resolve, reject) => {
-          fs.createReadStream("./uploads/" + req.file.filename).pipe(
+          
+          fs.createReadStream(path.join(
+            __dirname,
+            "../../uploads/" + req.file.filename
+          )).pipe(
             fs
               .createWriteStream(
                 path.join(__dirname,
-                  "./public/images/adverts/" +
+                  "../../public/images/adverts/" +
                   req.file.filename +
                   "_" +
                   req.file.originalname
@@ -110,7 +111,7 @@ class AdvertApiController {
   async getList(req, res, next) {
     const skip = parseInt(req.query.skip) || 0;
     const limit = parseInt(req.query.limit) || 1000; // nuestro api devuelve max 1000 registros
-    const sort = req.query.sort || "_id";
+    const sort = req.query.sort || [ 'updatedAt', '-1' ];
     const includeTotal = req.query.includeTotal === "true";
     let filters = {};
     console.log(req.query);
@@ -125,7 +126,7 @@ class AdvertApiController {
         sort,
         includeTotal
       );
-      console.log(adverts);
+      console.log("HEEEEEYYYYY", adverts);
 
       res.json({ ok: true, result: adverts });
     } catch (error) {
