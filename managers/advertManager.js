@@ -39,7 +39,7 @@ class AdvertManager {
       advert.photo = advert.photo ? process.env.API_BASE + route + advert.photo : null
       return advert;
     } catch (error) {
-      throw new Error(error);
+      throw error;
     }
   }
   async findOne(query) {
@@ -48,7 +48,7 @@ class AdvertManager {
       advert = await AdvertRepository.findOne(query);
       return advert;
     } catch (error) {
-      throw new Error(error);
+      throw error;
     }
   }
 
@@ -78,7 +78,7 @@ class AdvertManager {
     try {
       await AdvertRepository.save(advertTosave);
     } catch (error) {
-      throw new Error(error);
+      throw error;
     }
   }
 

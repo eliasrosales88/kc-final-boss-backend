@@ -25,8 +25,8 @@ class LoginApiController {
 
       // Not authenticate if user is not registered in database
       if (!(await bcrypt.compare(password, user.password))) {
-        // res.status(401);
-        res.json({ success: false, message: "Not Authenticated" });
+        res.status(401).send({ success: false, message: "Not Authenticated" })
+        // res.json({ success: false, message: "Not Authenticated" });
         return;
       }
 

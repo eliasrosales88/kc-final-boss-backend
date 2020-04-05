@@ -100,12 +100,14 @@ class AdvertApiController {
   async findById(req, res, next) {
     const _id = req.query._id;
 
+    let advert;
     try {
-      let advert = await AdvertManager.findById(_id);
-      res.json({ ok: true, result: advert });
+      advert = await AdvertManager.findById(_id);
     } catch (error) {
-      throw new Error(error);
+      res.status(404).send({error});
+      // throw new Error(error);
     }
+    res.json({ ok: true, result: advert });
   }
 
   async getList(req, res, next) {
@@ -135,6 +137,7 @@ class AdvertApiController {
   }
 
   async create(req, res, next) {
+    let advertTosaveAndSend;
     try {
       const body = req.body;
       body.tags = body.tags.split(",");
@@ -251,13 +254,15 @@ class AdvertApiController {
 
         // Save in DB
         await AdvertManager.save(advertTosave);
-        // Send response
-        res.json({ success: true, result: advertTosave });
+        advertTosaveAndSend = advertTosave;
       }
     } catch (error) {
-      console.log("Create advert error", error);
-      res.json({ success: false });
+      console.log("Create advert errors", error);
+      res.status(400).send({success: false, errors: error.errors})
+      // res.json({ success: false });
     }
+    // Send response
+    res.json({ success: true, result: advertTosave });
   }
 }
 

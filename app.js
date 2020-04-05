@@ -58,71 +58,7 @@ const userApiController = require("./controllers/apiv1/userApiController");
 /***************
  API ENDPOINTS
  ***************/
-/**
- * @swagger
- * /apiv1/register:
- *  post:
- *    tags: [register]
- *    description: Register user
- *    requestBody:
- *         description: A JSON object containing registration information
- *         required: true
- *         content:
- *            application/json:
- *             schema:      # Request body contents
- *               type: object
- *               properties:
- *                 username:
- *                   type: string
- *                 email:
- *                   type: string
- *                 password:
- *                   type: string
- *             example:
- *               username: test111
- *               email: test@test.com
- *               password: e12345696 
- *    responses:
- *      '200':
- *        description: OK
- *        content:
- *         application/json:
- *          schema:      # Request body contents
- *            type: object
- *            properties:
- *              success:
- *                type: boolean
- *              message :
- *                type: string
- *              data :
- *                type: object
- *      '400':
- *        description: Bad request.
- *      '401':
- *        description: Unauthorized
- *        content:
- *         application/json:
- *          schema:      # Request body contents
- *            type: object
- *            properties:
- *              success: 
- *                type: boolean
- *              error:
- *                type: string
- *      '404':
- *        description: User not found
- *        content:
- *         application/json:
- *          schema:      # Request body contents
- *            type: object
- *            properties:
- *              success:
- *                type: boolean
- *              error:
- *                type: string
- *      '5XX':
- *        description: Unexpected error.
- */
+
 app.post(
   "/apiv1/register",
   [
@@ -139,72 +75,11 @@ app.post(
   registerApiController.create,
   loginApiController.loginJWT
 );
-
-/**
- * @swagger
- * /apiv1/authenticate:
- *  post:
- *    summary: Login user
- *    tags: [authenticate]
- *    description: Login user
- *    requestBody:
- *      description: A JSON object containing user information
- *      required: true
- *      content:
- *         application/json:
- *          schema:      # Request body contents
- *            type: object
- *            properties:
- *              username:
- *                type: string
- *              password:
- *                type: string
- *          example:
- *            username: test111
- *            password: e12345696 
- *    responses:
- *      '200':
- *        description: OK
- *        content:
- *         application/json:
- *          schema:      # Request body contents
- *            type: object
- *            properties:
- *              success:
- *                type: boolean
- *              token :
- *                type: string
- *      '400':
- *        description: Bad request.
- *      '401':
- *        description: Unauthorized
- *        content:
- *         application/json:
- *          schema:      # Request body contents
- *            type: object
- *            properties:
- *              success: 
- *                type: boolean
- *              error:
- *                type: string
- *      '404':
- *        description: User not found
- *        content:
- *         application/json:
- *          schema:      # Request body contents
- *            type: object
- *            properties:
- *              success:
- *                type: boolean
- *              error:
- *                type: string
- *      '5XX':
- *        description: Unexpected error.
- */
 app.post("/apiv1/authenticate", loginApiController.loginJWT);
+
+// Adverts
 app.get("/apiv1/adverts", advertApiController.getList);
 app.get("/apiv1/advert", advertApiController.findById);
-app.get("/apiv1/user", userApiController.findOne);
 app.get("/apiv1/userAdvert", advertApiController.getList);
 app.get("/apiv1/account", jwtAuth(), advertApiController.getList);
 app.get("/apiv1/account/advert", jwtAuth(), advertApiController.findById);
@@ -212,8 +87,10 @@ app.post("/apiv1/account/advert", [jwtAuth(), upload.single('photo')],  advertAp
 app.patch("/apiv1/account/advert", [jwtAuth(), upload.single('photo')], advertApiController.update);
 app.delete("/apiv1/account/advert", jwtAuth(), advertApiController.delete);
 
-app.patch("/apiv1/account/user", jwtAuth(), userApiController.update);
+// Users
+app.get("/apiv1/user", userApiController.findOne);
 app.get("/apiv1/account/user", jwtAuth(), userApiController.findOne);
+app.patch("/apiv1/account/user", jwtAuth(), userApiController.update);
 app.delete("/apiv1/account/user", jwtAuth(), userApiController.delete);
 
 

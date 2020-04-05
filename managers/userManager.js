@@ -9,8 +9,9 @@ class UserManager {
     let query;
     try {
       query = await UserRepository.findOneAndUpdate(body);
+      return query;
     } catch (error) {
-      throw new Error(error)
+      throw error;
     }
   }
 
@@ -20,11 +21,11 @@ class UserManager {
     try {
       onDeleteAdvert = await AdvertRepository.deleteMany({owner: username});
       if (onDeleteAdvert.ok === 1) {
-        onDeleteUser = await User.findOneAndDelete({username});
+        onDeleteUser = await UserRepository.findOneAndDelete({username});
         return onDeleteUser;
       } else (onDeleteAdvert);
     } catch (error) {
-      throw new Error(error)
+      throw error
     }
   }
 
@@ -36,7 +37,7 @@ class UserManager {
       user = await UserRepository.findOne(query);
       return user;
     } catch (error) {
-      throw new Error(error);
+      throw error;
     }
   }
 
@@ -59,7 +60,7 @@ class UserManager {
       }
       
     } catch (error) {
-      throw new Error(error);
+      throw error;
     }
 
     // Check if username or email exist in database
@@ -91,7 +92,7 @@ class UserManager {
     try {
       await UserRepository.save(res);
     } catch (error) {
-      throw new Error(error);
+      throw error;
     }
   }
 }

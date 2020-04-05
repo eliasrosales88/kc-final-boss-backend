@@ -18,6 +18,16 @@ async deleteMany(filters, cb) {
   }
 }
 
+async findByIdAndRemove(_id) {
+  let response;
+  try {
+    response = await Advert.findByIdAndRemove(_id);
+    return response
+  } catch (error) {
+    throw error
+  }
+}
+
   async findByIdAndUpdate(_id, body){
     let advert;
     try {
@@ -36,7 +46,7 @@ async deleteMany(filters, cb) {
       advert = await Advert.findById(id);
       return advert;
     } catch (error) {
-      throw new Error(error);
+      throw error;
     }
   }
   async findOne(query) {
@@ -47,7 +57,7 @@ async deleteMany(filters, cb) {
       advert = await Advert.findOne(query);
       return advert;
     } catch (error) {
-      throw new Error(error);
+      throw error;
     }
   }
 
@@ -83,7 +93,7 @@ async deleteMany(filters, cb) {
       const advert = new Advert(advertTosave);
       await advert.save();
     } catch (error) {
-      throw new Error(error);
+      throw error;
     }
   }
 
