@@ -2,7 +2,7 @@
   "adverts": [
     {
       "name":"1080ti",
-      "description":"Una bici",
+      "description":"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam at nunc sodales, volutpat urna vel, congue risus. Aenean et ex vestibulum, interdum velit vel, viverra turpis. Cras nec lectus maximus, cursus lectus vel, finibus ligula.",
       "price": 3500,
       "forSale": true,
       "photo": "1080ti.jpg",
