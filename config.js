@@ -21,10 +21,9 @@ module.exports = {
         contact: {
           name: "github: eliasrosales88"
         },
-        servers: ["http://localhost:3000"]
+        servers: [process.env.API_BASE]
       },
       produces: ["application/json"],
-      host: "localhost:8000",
       basePath: "/api/swagger/v1",
       paths: {
         "/apiv1/register": {
