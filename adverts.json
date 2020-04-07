@@ -7,7 +7,7 @@
       "forSale": true,
       "photo": "1080ti.jpg",
       "tags": ["lifestyle", "games"],
-      "owner":"Francisco",
+      "owner":"admin",
       "createdAt":"2020-02-18T22:10:00.168Z",
       "updatedAt":"2020-02-18T22:10:00.168Z" 
     },
@@ -18,7 +18,7 @@
       "forSale": true,
       "photo": "apartamento.jpg",
       "tags": ["lifestyle"],
-      "owner":"Carmen",
+      "owner":"admin",
       "createdAt":"2020-02-18T22:09:50.764Z",
       "updatedAt":"2020-02-18T22:09:50.764Z" 
     },
@@ -29,7 +29,7 @@
       "forSale": true,
       "photo": "calleras.jpg",
       "tags": ["lifestyle"],
-      "owner":"Carmen",
+      "owner":"admin",
       "createdAt":"2020-02-18T22:09:50.764Z",
       "updatedAt":"2020-02-18T22:09:50.764Z" 
     },
@@ -40,7 +40,7 @@
       "forSale": true,
       "photo": "comba.jpg",
       "tags": ["lifestyle"],
-      "owner":"Carmen",
+      "owner":"admin",
       "createdAt":"2020-02-18T22:09:50.764Z",
       "updatedAt":"2020-02-18T22:09:50.764Z" 
     },
@@ -51,7 +51,7 @@
       "forSale": true,
       "photo": "default.jpg",
       "tags": ["lifestyle"],
-      "owner":"Carmen",
+      "owner":"admin",
       "createdAt":"2020-02-18T22:09:50.764Z",
       "updatedAt":"2020-02-18T22:09:50.764Z" 
     },
@@ -62,7 +62,7 @@
       "forSale": true,
       "photo": "pcgaming.jpg",
       "tags": ["lifestyle", "games"],
-      "owner":"Carmen",
+      "owner":"admin",
       "createdAt":"2020-02-18T22:09:50.764Z",
       "updatedAt":"2020-02-18T22:09:50.764Z" 
     },
@@ -73,7 +73,7 @@
       "forSale": true,
       "photo": "ps4pro.jpg",
       "tags": ["lifestyle", "games"],
-      "owner":"Carmen",
+      "owner":"admin",
       "createdAt":"2020-02-18T22:09:50.764Z",
       "updatedAt":"2020-02-18T22:09:50.764Z" 
     },
@@ -84,7 +84,7 @@
       "forSale": true,
       "photo": "ratonmamba.jpg",
       "tags": ["lifestyle", "work"],
-      "owner":"Carmen",
+      "owner":"admin",
       "createdAt":"2020-02-18T22:09:50.764Z",
       "updatedAt":"2020-02-18T22:09:50.764Z" 
     },
@@ -95,7 +95,7 @@
       "forSale": true,
       "photo": "romaelos.jpg",
       "tags": ["lifestyle"],
-      "owner":"Carmen",
+      "owner":"admin",
       "createdAt":"2020-02-18T22:09:50.764Z",
       "updatedAt":"2020-02-18T22:09:50.764Z" 
     },
@@ -106,7 +106,7 @@
       "forSale": true,
       "photo": "tecladorazer.jpg",
       "tags": ["lifestyle", "work"],
-      "owner":"Carmen",
+      "owner":"admin",
       "createdAt":"2020-02-18T22:09:50.764Z",
       "updatedAt":"2020-02-18T22:09:50.764Z" 
     },
@@ -117,7 +117,7 @@
       "forSale": true,
       "photo": "x6.jpg",
       "tags": ["lifestyle"],
-      "owner":"Carmen",
+      "owner":"admin",
       "createdAt":"2020-02-18T22:09:50.764Z",
       "updatedAt":"2020-02-18T22:09:50.764Z" 
     },
@@ -128,7 +128,7 @@
       "forSale": true,
       "photo": "xbox.jpg",
       "tags": ["lifestyle"],
-      "owner":"Carmen",
+      "owner":"admin",
       "createdAt":"2020-02-18T22:09:50.764Z",
       "updatedAt":"2020-02-18T22:09:50.764Z" 
     }
