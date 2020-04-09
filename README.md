@@ -9,7 +9,7 @@ Run `npm install` inside root folder
 
 --- 
 ## **Running the App**
-For developement and production check the file `.env.example` to set your own variables and rename as `.env`  
+For development and production check the file `.env.example` to set your own variables and copy and rename as `.env`  
 You also need to check the `config.js ` file to set swagger config
 
 ### Development
