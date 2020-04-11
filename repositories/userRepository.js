@@ -8,6 +8,7 @@ class UserRepository {
 
       query = await User.findOneAndUpdate({ username: body.username }, body, {
         rawResult: true,
+        new: true
       });
       console.log("USER UPDATED", query);
 
