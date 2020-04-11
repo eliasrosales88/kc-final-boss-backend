@@ -1,5 +1,8 @@
 # kc-final-boss-backend
-Nodejs backend of the final practice of Keepcoding fullstack program.  
+Nodejs backend of the final practice of Keepcoding fullstack program. 
+
+This project is intended to work with this [Frontend](https://github.com/eliasrosales88/kc-final-boss-frontend)
+
 ## **Recommended**  
 - Node  v13.7.0  
 - Mongo v4.2.5  
